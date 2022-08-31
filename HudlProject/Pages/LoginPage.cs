@@ -1,13 +1,15 @@
-﻿
-namespace HudlProject.Pages
+﻿namespace HudlProject.Pages
 {
-    public class LoginPage
+    public class LoginPage : BasePage
     {
-        IWebDriver Driver { get; set; }
+        By emailField = By.Id("email");
+        By passwordField = By.Id("password");
+        By loginButton = By.Id("logIn");
+        public By loginErrorMessage { get; } = By.CssSelector("p[data-qa-id=\"error-display\"]");
+        public String desiredInvalidLoginMessage {get;} = "We didn't recognize that email and/or password.Need help?";
 
-        public LoginPage(IWebDriver driver)
+        public LoginPage(IWebDriver driver) : base(driver)
         {
-            Driver = driver;
         }
 
         /// <summary>
@@ -51,22 +53,26 @@ namespace HudlProject.Pages
             }
         }
 
-        By emailField = By.Id("email");
+        
         public void enterEmail(String emailAddress)
         {
             Driver.FindElement(emailField).SendKeys(emailAddress);
         }
 
-        By passwordField = By.Id("password");
         public void enterPassword(String password)
         {
             Driver.FindElement(passwordField).SendKeys(password);
         }
 
-        By loginButton = By.Id("logIn");
         public void clickLoginButton()
         {
             Driver.FindElement(loginButton).Click();
+        }
+
+        public String getDisplayedLoginErrorMessageText()
+        {
+            string elementText = Driver.FindElement(loginErrorMessage).Text;
+            return elementText;
         }
 
     }

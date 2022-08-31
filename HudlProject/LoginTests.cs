@@ -35,6 +35,36 @@ namespace HudlProject
             Assert.IsTrue(userHomePage.isCurrentPage());
         }
 
+        [Test]
+        public void Test2InvalidPassword()
+        {
+            LandingPage landingPage = new LandingPage(driver);
+            landingPage.clickLogin();
+
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.enterEmail(loginPage.retrieveCredentials("email"));
+            loginPage.enterPassword("Abc1234");
+            loginPage.clickLoginButton();
+
+            SpinWait.SpinUntil(() => loginPage.isElementDisplayed(loginPage.loginErrorMessage), 5000);
+
+            Assert.IsTrue(loginPage.getDisplayedLoginErrorMessageText().Equals(loginPage.desiredInvalidLoginMessage));
+        }
+
+        [Test]
+        public void Test3EmptyLogin()
+        {
+            LandingPage landingPage = new LandingPage(driver);
+            landingPage.clickLogin();
+
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.clickLoginButton();
+
+            SpinWait.SpinUntil(() => loginPage.isElementDisplayed(loginPage.loginErrorMessage), 5000);
+
+            Assert.IsTrue(loginPage.getDisplayedLoginErrorMessageText().Equals(loginPage.desiredInvalidLoginMessage));
+        }
+
         [TearDown]
         public void Teardown()
         {

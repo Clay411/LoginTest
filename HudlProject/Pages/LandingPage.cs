@@ -5,13 +5,13 @@ namespace HudlProject.Pages
     {
         IWebDriver Driver { get; set; }
 
-        //private IWebElement btnLogin = Driver.FindElement(By.Id("login"));
+        By loginButton = By.CssSelector("a[data-qa-id=\"login\"]");
+
         public LandingPage(IWebDriver driver)
         {
             Driver = driver;
         }
-
-        By loginButton = By.CssSelector("a[data-qa-id=\"login\"]");
+        
         public void clickLogin()
         {
             Driver.FindElement(loginButton).Click();
