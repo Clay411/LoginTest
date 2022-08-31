@@ -12,7 +12,7 @@ namespace HudlProject.Pages
             Driver = driver;
         }
         
-        public void clickLogin()
+        public void clickLoginButton()
         {
             Driver.FindElement(loginButton).Click();
         }

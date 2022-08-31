@@ -69,6 +69,10 @@
             Driver.FindElement(loginButton).Click();
         }
 
+        /// <summary>
+        /// A function to get the text of the login error message element displayed after invalid login attempt.
+        /// </summary>
+        /// <returns>The text of the login error message element.</returns>
         public String getDisplayedLoginErrorMessageText()
         {
             string elementText = Driver.FindElement(loginErrorMessage).Text;
