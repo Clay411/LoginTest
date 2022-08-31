@@ -1,12 +1,12 @@
 ﻿
 namespace HudlProject.Pages
 {
-    public class HomePage
+    public class LandingPage
     {
         IWebDriver Driver { get; set; }
 
         //private IWebElement btnLogin = Driver.FindElement(By.Id("login"));
-        public HomePage(IWebDriver driver)
+        public LandingPage(IWebDriver driver)
         {
             Driver = driver;
         }
