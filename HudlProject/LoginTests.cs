@@ -34,7 +34,7 @@ namespace HudlProject
             loginPage.clickLoginButton();
 
             UserHomePage userHomePage = new UserHomePage(driver);
-            
+            //Verify login was successful
             Assert.IsTrue(userHomePage.isCurrentPage());
         }
 
@@ -51,9 +51,9 @@ namespace HudlProject
             loginPage.enterEmail(loginPage.retrieveCredentials("email"));
             loginPage.enterPassword("Abc1234");
             loginPage.clickLoginButton();
-
+            //wait for the invalid login message to display on the page.
             SpinWait.SpinUntil(() => loginPage.isElementDisplayed(loginPage.loginErrorMessage), 5000);
-
+            //Validate the invalid login message text displays expected message.
             Assert.IsTrue(loginPage.getDisplayedLoginErrorMessageText().Equals(loginPage.desiredInvalidLoginMessage));
         }
 
@@ -70,7 +70,7 @@ namespace HudlProject
             loginPage.clickLoginButton();
 
             SpinWait.SpinUntil(() => loginPage.isElementDisplayed(loginPage.loginErrorMessage), 5000);
-
+            //Validate the invalid login message text displays expected message.
             Assert.IsTrue(loginPage.getDisplayedLoginErrorMessageText().Equals(loginPage.desiredInvalidLoginMessage));
         }
 
@@ -87,9 +87,9 @@ namespace HudlProject
             loginPage.enterEmail("clayton.pfeifer@test.com");
             loginPage.enterPassword(loginPage.retrieveCredentials("password"));
             loginPage.clickLoginButton();
-
+            //wait for the invalid login message to display on the page.
             SpinWait.SpinUntil(() => loginPage.isElementDisplayed(loginPage.loginErrorMessage), 5000);
-
+            //Validate the invalid login message text displays expected message.
             Assert.IsTrue(loginPage.getDisplayedLoginErrorMessageText().Equals(loginPage.desiredInvalidLoginMessage));
         }
 
